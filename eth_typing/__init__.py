@@ -1,6 +1,10 @@
 from importlib.metadata import (
     version as __version,
 )
+from typing import (
+    Any,
+)
+import warnings
 
 from .abi import (
     ABI,
@@ -9,9 +13,13 @@ from .abi import (
     ABIElement,
     ABIError,
     ABIEvent,
+    ABIEventComponent,
+    ABIEventParam,
     ABIFallback,
     ABIFunction,
+    ABIFunctionComponent,
     ABIFunctionInfo,
+    ABIFunctionParam,
     ABIFunctionType,
     ABIReceive,
     Decodable,
@@ -54,6 +62,16 @@ from .networks import (
     ChainId,
 )
 
+
+def _DeprecatedType(type: Any) -> Any:
+    warnings.warn(
+        f'"{type}" has been deprecated in eth-typing and will be removed in v5.',
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return type
+
+
 __all__ = (
     "ABI",
     "ABIComponent",
@@ -61,9 +79,13 @@ __all__ = (
     "ABIElement",
     "ABIError",
     "ABIEvent",
+    "ABIEventComponent",
+    "ABIEventParam",
     "ABIFallback",
     "ABIFunction",
+    "ABIFunctionComponent",
     "ABIFunctionInfo",
+    "ABIFunctionParam",
     "ABIFunctionType",
     "ABIReceive",
     "Decodable",
